@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Loading Screen Animation</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink; /* Set background color to pink */
+            color: white;
+            font-family: Arial, sans-serif;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .loading-container {
+            text-align: center;
+            background-color: purple;     /* Purple background for the container */
+            padding: 20px;
+            border-radius: 10px;
+            animation: slideIn 1s;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); /* Glowing effect */
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff1493; /* Neon-like pink color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
+
+        .button:hover {
+            background-color: #ff69b4; /* Lighter pink on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+        }
+    </style>
+  </head>
+  <body>
+    <div class="loading-container">
+      <h1>Welcome xxxsexy</h1>
+      <p>Do you want a link? Of course! It will be here soon...</p>
+      <a moz-do-not-send="true" href="under%20construction.html"><button
+          class="button" onclick="handleClick()">Click Me</button></a>
+    </div>
+    <script>
+    function handleClick() {
+        alert("Loading your content...");
+        // Here you can add the code to redirect or load new content.
+        // For example: window.location.href = 'your-link.html';
+    }
+</script>
+  </body>
+</html>
