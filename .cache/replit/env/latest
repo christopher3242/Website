@@ -1,0 +1,54 @@
+declare -gx REPL_IMAGE=gcr.io/marine-cycle-160323/nix:bf8590a3e2f0a8b70b7ca175eeed9074dffbfca9
+declare -gx REPLIT_NIX_CHANNEL=stable-23_11
+declare -gx SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+declare -gx __EGL_VENDOR_LIBRARY_FILENAMES=/nix/store/zxhjnh2d440bhli0zck18s10hcq07qpp-mesa-24.2.2-drivers/share/glvnd/egl_vendor.d/50_mesa.json
+declare -gx REPLIT_ENVIRONMENT=production
+declare -gx REPL_IDENTITY_KEY=k2.secret.k0REcmmeSCCUFFksvccel0SOKlsNvYH2LoJ1e0uk4ZLO82MyB8zazce63u-DBNGdUTuGBLkWccY0nMWP5hOSlg
+declare -gx REPL_ID=4403adcf-39d1-4e06-ab4f-03958e0f1c43
+declare -gx REPLIT_PID1_FLAG_REPLIT_RTLD_LOADER=1
+declare -gx DENO_TLS_CA_STORE=system
+declare -gx REPLIT_SUBCLUSTER=interactive
+declare -gx HOME=/home/runner
+declare -gx REPL_SLUG=CumbersomeEmotionalSeahorse
+declare -gx REPLIT_DEV_DOMAIN=4403adcf-39d1-4e06-ab4f-03958e0f1c43-00-38ax6q6cox3xy.worf.replit.dev
+declare -gx NIX_PATH=nixpkgs=/home/runner/.nix-defexpr/channels/nixpkgs-stable-23_11:/home/runner/.nix-defexpr/channels
+declare -gx DIRENV_CONFIG=/etc/direnv
+declare -gx LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+declare -gx REPL_OWNER=christopher3242
+declare -gx REPL_HOME=/home/runner/CumbersomeEmotionalSeahorse
+declare -gx REPL_IDENTITY=v2.public.Q2lRME5EQXpZV1JqWmkwek9XUXhMVFJsTURZdFlXSTBaaTB3TXprMU9HVXdaakZqTkRNU0QyTm9jbWx6ZEc5d2FHVnlNekkwTWhvYlEzVnRZbVZ5YzI5dFpVVnRiM1JwYjI1aGJGTmxZV2h2Y25ObElpUTBOREF6WVdSalppMHpPV1F4TFRSbE1EWXRZV0kwWmkwd016azFPR1V3WmpGak5ETTRoYWk2QkZvVENnUjNiM0ptRWd0cGJuUmxjbUZqZEdsMlpRPT1GzpxPAq7iX5H8A6GSRMVmG9aNorg98z0H-GT7Bn_Bq-eD6dOWBJaHDmLm-XXGsNzWzpArVt1r9A6NrH0rUigP.R0FFaUJtTnZibTFoYmhLV0NIWXlMbkIxWW14cFl5NVJNbVI2VTFOMGExUkZjREJrTVd4U1QxZEdlRlpXU2xOVFZYaEVWRmR3U1UxSFNtcFNNRlpPWkZoV2MxSldWbWhSVjJodVVtdGtjRmRWZEV0U1JrVjNWRlZTVDJGR2NFaFViVEZOVmtVd01WZHJVa1prUlRWSVZsaGtUMkZVUm05WFYzQlRZbFY0VlZGWWNGQldSbFV3VjJ4U1EySlZNVmhVVkVKT1pVYzVVMUpYWXpWaGJVWkpVMjVDYWsweFNqSlpNR1J2WWtkT2NWUlliRTlTUld4b1VXeFNjRkp1UmsxaU1GWklXakZzY0ZGcmFHdGtiVTUwVjFkR1JWVXlPVTFaVm1NeFRVWndXVk50YUZwTk1VcDNXa2N4Vm1GVk5WaGpNMnhOWW10SmVGZFhNVFJqUm13MVRsUmFhMkY2Vm5oV1JtUnJZbFpTVlZOdWNFNU5SMmQ0V2tWU2EwMXNiM3BhUmxaV1lsUldXRlZzVW10aU1XOTRWRlJHVTJKVVZrcFZha0V4VXpKV2NsZHVSazFXYlhoV1dWUk9RMWQwVXpKQmJVbFNaMjFCYkY5V1JWbDZSVGx2VVZGR1NGUkdZMDFpWkc1SFRERjBkbVZCU0hSck9IcDBZM2R3Vkd4cGMzZEJMVkIxVDJodFFXUlBZbmgyTUY4dE1VOVdOVEJVWTJGWWNXSnNhMmxSVmpWUmR5NVNNRVpHWVZWS2RGUnVXbWxpVkVadldXMW9UVmxyUm5WWFdHeE5ZbXRKZUZkWE1UUmpSbXcxVGxaS1RtSldTVEpXVkVaclRVZFdkRk5zV2xSaWJrSlhWbTB4TkZVeFVuSlZiVVpPVm01Q1YxVXlkRTlXUmxwWllVVldWbVZyU25KVmFrRXhVMVpHY2xOc1drNVNiSEJUVm0xd1QxbFhVbGRpTTJoVFlsZG9VMVpxU205a1ZsWllaRWQwYVdKRk5WaFphMVpQVm0xS1ZXSkZWbFpoYTBwSVdrZDRjMVpzU25WU2JFcFhWbGhDU2xZeWNFTmpNV1J6VW14b2FGTkdjRk5VVldSVFVURmFSMXBGWkZKaVZWcEpWMnRWZUZVd01YUlZhM1JYVFZaYVZGVlVTa3BrTVZKeVlVWktWMkV4Y0haV1ZscHJZakpLYzFSdVNtbFRSVnBZV1cxMGQxUXhiRmRWYkdST1RWaENTRmRyVmpCaGF6RnlWMnhzVjFKdGFGaFdSRVpoWkVkV1NXTkdaRmRpVmtwSlZrWlNTMVF5VFhsVGFscFdZWHBzV0ZSWGVFdGlNVmw1VFZSU1ZFMXJXa2RVVmxaclZrZEtSbGRzV2xwV2VrVXdWMVphYzA1c1JsVlNiWEJwVWxoQ05sWkVSbGRaVjBWNVUyeHNWbFpGV2xkWmExcGhZMnh3U0dWRldteFNia0pHVmpJeGQyRkhSWGhqUnpsWFlXdGFWRlY2Ums1bFJscHpVMnhHVjFKRlNqTldNblJoVjIxT2RHTkZNVkJYUlRSNldrVldXazVXY0VWU1dGSnBZbFJXVVZRd1pHRlZiVXBZWVVSS1ZGSldjSGhXYTFaeVpFZFNSV0ZGY0dsaVZuQlJWMFJKZUZaVk1YUlplbEpxVjBoQ1JsVnJaRlpPUmxwRllrWlNhRTFXU2paWGJYaHZZbGRXY21KNlFsaFdWVEUyVjIxemQyVnNaRlpPV0VwVVZrZFNXVmRYYTNkT1ZrcHlWVzA1VDJGVVJreFVha2sxVWtWNGMxTllaRk5oTVhCdlZteFdkMDFHV2toT1YwWm9WakJ3VmxWdE1EVlhiVXBZVldwS1ZtRnJjRkJWTVZwUFpGWmtkRkpzVGxObGJXY3c
+declare -gx REPLIT_RTLD_LOADER=1
+declare -gx REPLIT_CLUSTER=worf
+declare -gx XDG_CACHE_HOME=/home/runner/CumbersomeEmotionalSeahorse/.cache
+declare -gx DOCKER_CONFIG=/home/runner/CumbersomeEmotionalSeahorse/.config/docker
+declare -gx REPLIT_LD_AUDIT=/nix/store/n5x1kgbz8zjh63ymsijbislyi1n1hir6-replit_rtld_loader-1/rtld_loader.so
+declare -gx REPLIT_BASHRC=/nix/store/im3371wb3b5wkq8ybcwydn89cbw30csv-replit-bashrc/bashrc
+declare -gx REPLIT_DB_URL=https://kv.replit.com/v0/eyJhbGciOiJIUzUxMiIsImlzcyI6ImNvbm1hbiIsImtpZCI6InByb2Q6MSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25tYW4iLCJleHAiOjE3MjcyNzQzNjAsImlhdCI6MTcyNzE2Mjc2MCwiZGF0YWJhc2VfaWQiOiI0NDAzYWRjZi0zOWQxLTRlMDYtYWI0Zi0wMzk1OGUwZjFjNDMifQ.Uz4JwVavd6FtKOC1AtD9WjwFdFa20otOnL2SDmjemlj38uIPZ3FoS7usDRPClOKQ0ULo4WZJB4XTlrnIQm35Xg
+declare -gx XDG_DATA_HOME=/home/runner/CumbersomeEmotionalSeahorse/.local/share
+declare -gx GIT_ASKPASS=replit-git-askpass
+declare -gx NIX_PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
+declare -gx NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+declare -gx REPLIT_RIPPKGS_INDICES=/nix/store/73awzgwmrga8y0dl84cp30h40965wyk5-rippkgs-indices
+declare -gx REPLIT_PID1_VERSION=0.0.0-c8b6d8c
+declare -gx REPL_PUBKEYS='{"crosis-ci":"7YlpcYh82oR9NSTtSYtR5jDL4onNzCGJGq6b+9CuZII=","crosis-ci:1":"7YlpcYh82oR9NSTtSYtR5jDL4onNzCGJGq6b+9CuZII=","crosis-ci:latest":"7YlpcYh82oR9NSTtSYtR5jDL4onNzCGJGq6b+9CuZII=","prod":"tGsjlu/BJvWTgvMaX7acuUb7AO1dXOrRiuk7y083RFE=","prod:1":"tGsjlu/BJvWTgvMaX7acuUb7AO1dXOrRiuk7y083RFE=","prod:2":"8uGN+vfszlnV93/HCSHlVLG0xddMlPkir1Ni4JKT4+w=","prod:3":"9+MCOSHQSQlcodXoot8dC8NLhc862nLkx1/VMsbY2h8=","prod:4":"8uGN+vfszlnV93/HCSHlVLG0xddMlPkir1Ni4JKT4+w=","prod:5":"9+MCOSHQSQlcodXoot8dC8NLhc862nLkx1/VMsbY2h8=","prod:latest":"tGsjlu/BJvWTgvMaX7acuUb7AO1dXOrRiuk7y083RFE=","vault-goval-token":"D5jJoMx1Ml54HM92NLgXl+MzptwDqbSsfyFG6f52g9E=","vault-goval-token:1":"D5jJoMx1Ml54HM92NLgXl+MzptwDqbSsfyFG6f52g9E=","vault-goval-token:latest":"D5jJoMx1Ml54HM92NLgXl+MzptwDqbSsfyFG6f52g9E="}'
+declare -gx REPL_OWNER_ID=9344005
+declare -gx PROMPT_DIRTRIM=2
+declare -gx REPLIT_CLI=/nix/store/awin2nvcdzbdds0ynk5m19gsprxnd3yq-pid1-0.0.1/bin/replit
+declare -gx USER=runner
+read -r _new_path <<< "/nix/store/9f08zpicz8yxq56z5qrbvmhmg4b2yxd8-pid1/bin:/nix/store/1lr1hvx3rgl6bp6l8spq2n51q2kr8igr-replit-runtime-path/bin:/home/runner/.nix-profile/bin:/home/runner/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+#PATH=/nix/store/9f08zpicz8yxq56z5qrbvmhmg4b2yxd8-pid1/bin:/nix/store/1lr1hvx3rgl6bp6l8spq2n51q2kr8igr-replit-runtime-path/bin:/home/runner/.nix-profile/bin:/home/runner/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+if [ -e "/run/replit/env/last" ]; then read -r _last_path < <(\grep '^#PATH=' /run/replit/env/last | cut -f 2 -d =); fi
+_user_components="$(\tr : $'\n' <<< "${PATH:-}" |\grep -xv -f <(\tr : $'\n' <<< "${_last_path}") |\tr $'\n' :)"
+declare -gx PATH="${_user_components}${_new_path}"
+declare -gx REPLIT_PID1_FLAG_NIXMODULES_BEFORE_REPLIT_NIX=1
+declare -gx NIXPKGS_ALLOW_UNFREE=1
+declare -gx HOSTNAME=e0bf002d12ac
+declare -gx NIX_PROFILES='/nix/var/nix/profiles/default /home/runner/.nix-profile'
+declare -gx LANG=en_US.UTF-8
+declare -gx DISPLAY=:0
+declare -gx REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+declare -gx LIBGL_DRIVERS_PATH=/nix/store/zxhjnh2d440bhli0zck18s10hcq07qpp-mesa-24.2.2-drivers/lib/dri
+declare -gx REPL_LANGUAGE=html
+declare -gx XDG_CONFIG_HOME=/home/runner/CumbersomeEmotionalSeahorse/.config
+declare -gx GIT_EDITOR=replit-git-editor
+declare -gx COLORTERM=truecolor
