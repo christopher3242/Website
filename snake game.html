@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game with Line Controller and Best Score</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #4682B4; /* Blue background */
+            font-family: 'Arial', sans-serif;
+            color: white; /* Change text color to white for contrast */
+            position: relative;
+        }
+        canvas {
+            background-color: #000; /* Canvas background remains black */
+            border: 2px solid #555;
+        }
+        #score {
+            text-align: center;
+            font-size: 20px;
+            color: #FFFFFF; /* Score text color */
+        }
+        #bestScore {
+            text-align: center;
+            font-size: 20px;
+            color: #FFD700; /* Best score color */
+        }
+        #exit {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #FFD700; /* Golden color for the exit link */
+            font-size: 18px;
+        }
+        #exit:hover {
+            text-decoration: underline; /* Underline on hover for better UX */
+        }
+        #controller {
+            width: 100%;
+            height: 60px; /* Height of the controller */
+            background-color: rgba(255, 255, 255, 0.2); /* Light translucent background */
+            display: flex;
+        }
+        .control {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none; /* Prevent text selection */
+        }
+        .control:hover {
+            background-color: rgba(255, 255, 255, 0.4); /* Change color on hover */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="score">Score: 0</div>
+    <div id="bestScore">Best Score: 0</div>
+    <a id="exit" href="games.html">Exit</a>
+    
+    <div id="controller">
+        <div class="control" id="left">←</div>
+        <div class="control" id="up">↑</div>
+        <div class="control" id="down">↓</div>
+        <div class="control" id="right">→</div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const box = 20; // Size of one box
+        let snake = [{ x: box * 5, y: box * 5 }];
+        let food = {
+            x: Math.floor(Math.random() * (canvas.width / box)) * box,
+            y: Math.floor(Math.random() * (canvas.height / box)) * box
+        };
+        let direction = 'RIGHT';
+        let nextDirection = direction; // Track the next direction
+        let score = 0; // Initialize current score
+        let bestScore = localStorage.getItem('bestScore') ? parseInt(localStorage.getItem('bestScore')) : 0; // Initialize best score
+
+        // Display the best score
+        document.getElementById('bestScore').innerText = 'Best Score: ' + bestScore;
+
+        document.addEventListener('keydown', (event) => changeDirection(event));
+
+        // Change direction based on keyboard and touch controls
+        document.getElementById('left').addEventListener('click', () => changeDirection({ keyCode: 37 }));
+        document.getElementById('up').addEventListener('click', () => changeDirection({ keyCode: 38 }));
+        document.getElementById('down').addEventListener('click', () => changeDirection({ keyCode: 40 }));
+        document.getElementById('right').addEventListener('click', () => changeDirection({ keyCode: 39 }));
+
+        function changeDirection(event) {
+            if (event instanceof KeyboardEvent) {
+                event.preventDefault();
+            }
+            if (event.keyCode === 37 && nextDirection !== 'RIGHT') {
+                nextDirection = 'LEFT';
+            } else if (event.keyCode === 38 && nextDirection !== 'DOWN') {
+                nextDirection = 'UP';
+            } else if (event.keyCode === 39 && nextDirection !== 'LEFT') {
+                nextDirection = 'RIGHT';
+            } else if (event.keyCode === 40 && nextDirection !== 'UP') {
+                nextDirection = 'DOWN';
+            }
+        }
+
+        function draw() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the food
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, box, box);
+
+            // Update the snake's position based on the next direction
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
+
+            direction = nextDirection; // Handle the actual direction update
+            if (direction === 'LEFT') snakeX -= box;
+            if (direction === 'UP') snakeY -= box;
+            if (direction === 'RIGHT') snakeX += box;
+            if (direction === 'DOWN') snakeY += box;
+
+            // Check if the snake eats the food
+            if (snakeX === food.x && snakeY === food.y) {
+                score++; // Increase score
+                document.getElementById('score').innerText = 'Score: ' + score;
+
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width / box)) * box,
+                    y: Math.floor(Math.random() * (canvas.height / box)) * box
+                };
+            } else {
+                // Remove the tail
+                snake.pop();
+            }
+
+            // Add new head
+            const newHead = { x: snakeX, y: snakeY };
+
+            // Game Over conditions
+            if (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
+                clearInterval(game);
+                
+                // Update best score if the current score is higher
+                if (score > bestScore) {
+                    bestScore = score;
+                    localStorage.setItem('bestScore', bestScore); // Update local storage
+                    document.getElementById('bestScore').innerText = 'Best Score: ' + bestScore; // Update displayed best score
+                }
+
+                alert('Game Over! Final Score: ' + score);
+                document.location.reload();
+            }
+
+            snake.unshift(newHead);
+
+            // Draw the snake
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = (i === 0) ? 'lime' : 'green';
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            }
+        }
+
+        function collision(head, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (head.x === array[i].x && head.y === array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        const game = setInterval(draw, 100);
+    </script>
+</body>
+</html>
