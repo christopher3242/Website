@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
     <title>Snake Game with Line Controller and Best Score</title>
     <style>
         body {
@@ -58,20 +61,18 @@
             background-color: rgba(255, 255, 255, 0.4); /* Change color on hover */
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
     <div id="score">Score: 0</div>
     <div id="bestScore">Best Score: 0</div>
-    <a id="exit" href="games.html">Exit</a>
-    
+    <a id="exit" href="../games.html" moz-do-not-send="true">Exit</a>
     <div id="controller">
-        <div class="control" id="left">←</div>
-        <div class="control" id="up">↑</div>
-        <div class="control" id="down">↓</div>
-        <div class="control" id="right">→</div>
+      <div class="control" id="left">←</div>
+      <div class="control" id="up">↑</div>
+      <div class="control" id="down">↓</div>
+      <div class="control" id="right">→</div>
     </div>
-    
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -183,5 +184,5 @@
 
         const game = setInterval(draw, 100);
     </script>
-</body>
+  </body>
 </html>

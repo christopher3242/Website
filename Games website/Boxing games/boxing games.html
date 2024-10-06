@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Boxing Game</title>
+    <style>
+        body {
+            background-color: rgb(173, 216, 230); /* Light blue background */
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #arena {
+            width: 600px;
+            height: 400px;
+            border: 5px solid #000;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .fighter {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #fighter1 {
+            left: 10px;
+            background-color: red;
+        }
+        #fighter2 {
+            right: 10px;
+            background-color: blue;
+        }
+        #score {
+            margin-top: 20px;
+        }
+        #hitButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #roundAndTimer {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        #exit {
+            margin-top: 20px;
+            font-size: 16px;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        #downCount {
+            font-size: 24px;
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Boxing Game: Player vs CPU</h1>
+    <div id="roundAndTimer">
+      <p>Round: <span id="round">1</span> | Time: <span id="time">100</span>s</p>
+    </div>
+    <div id="arena">
+      <div id="fighter1" class="fighter"></div>
+      <div id="fighter2" class="fighter"></div>
+    </div>
+    <div id="score">
+      <p>Fighter 1 (You) Health: <span id="health1">100</span></p>
+      <p>Fighter 2 (CPU) Health: <span id="health2">100</span></p>
+    </div>
+    <button id="hitButton">Hit</button>
+    <div id="downCount"></div>
+    <div id="exit"><a moz-do-not-send="true" href="../games.html">Exit
+        Game</a></div>
+    <script>
+    let health1 = 100;
+    let health2 = 100;
+    const fighter1 = document.getElementById("fighter1");
+    const fighter2 = document.getElementById("fighter2");
+    const roundDisplay = document.getElementById("round");
+    const timerDisplay = document.getElementById("time");
+    const downCountDisplay = document.getElementById("downCount");
+
+    let fighter1Position = 10;
+    let fighter2Position = 550;
+    let fighter1YPosition = 180;
+    let fighter2YPosition = 180;
+    const arenaWidth = 600;
+    const arenaHeight = 400;
+
+    let currentRound = 1;
+    let timeLeft = 100;
+    let roundTimer;
+    let cpuMoveInterval;
+
+    const attackDistance = 50; // Distance at which CPU will attack
+    let knockdownCount = 0; // Count of knockdowns for player
+    let playerKnockedDown = 0; // Number of times player is knocked down
+    let downed = false; // Is the player down
+    let countTimer; // Timer for count after knockdown
+
+    function startRound() {
+        health1 = 100;
+        health2 = 100;
+        document.getElementById("health1").innerText = health1;
+        document.getElementById("health2").innerText = health2;
+        resetPositions();
+        timeLeft = 100;
+        timerDisplay.innerText = timeLeft;
+        downCountDisplay.innerText = '';
+        clearInterval(roundTimer);
+        clearInterval(cpuMoveInterval);
+        clearInterval(countTimer);
+        roundTimer = setInterval(updateTimer, 1000);
+        cpuMoveInterval = setInterval(cpuMove, 500); // CPU moves every half a second
+    }
+
+    function updateTimer() {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(roundTimer);
+            clearInterval(cpuMoveInterval);
+            determineWinner();
+        }
+    }
+
+    function resetPositions() {
+        fighter1Position = 10; 
+        fighter1.style.left = fighter1Position + 'px'; 
+        fighter1YPosition = 180; 
+        fighter1.style.top = fighter1YPosition + 'px'; 
+        fighter2Position = 550; 
+        fighter2YPosition = 180; 
+        fighter2.style.left = fighter2Position + 'px'; 
+        fighter2.style.top = fighter2YPosition + 'px'; 
+        knockdownCount = 0; // Reset knockdown count at the start of each round
+        downed = false; // Reset down state
+    }
+
+    // Using W, A, S, D for movement
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "d" && fighter1Position < arenaWidth - 60) { // Move right (D)
+            fighter1Position += 10;
+            fighter1.style.left = fighter1Position + 'px';
+        } else if (event.key === "a" && fighter1Position > 0) { // Move left (A)
+            fighter1Position -= 10;
+            fighter1.style.left = fighter1Position + 'px';
+        } else if (event.key === "w" && fighter1YPosition > 0) { // Move up (W)
+            fighter1YPosition -= 10;
+            fighter1.style.top = fighter1YPosition + 'px';
+        } else if (event.key === "s" && fighter1YPosition < arenaHeight - 60) { // Move down (S)
+            fighter1YPosition += 10;
+            fighter1.style.top = fighter1YPosition + 'px';
+        }
+    });
+
+    document.getElementById("hitButton").addEventListener("click", function() {
+        punchCPU();
+    });
+
+    function punchCPU() {
+        const distanceToPlayer = fighter1Position - fighter2Position; 
+        if (Math.abs(distanceToPlayer) < 60 && Math.abs(fighter1YPosition - fighter2YPosition) < 60) { 
+            let damage = Math.floor(Math.random() * 6) + 5; // Random damage between 5 and 10
+            health2 -= damage; 
+            document.getElementById("health2").innerText = health2 > 0 ? health2 : 0;
+            console.log(`Hit CPU! Damage: ${damage}`);
+
+            // Check if the CPU is knocked down
+            if (health2 <= 0) {
+                knockdownCount++; // Increment knockdown count
+                alert("You knocked out the CPU!");
+                resetGame();
+            } else if (health2 <= 30) {
+                knockdownCount++; // Increment knockdown count if health under 30
+                if (knockdownCount >= 3) {
+                    alert("Technical Knockout (TKO)! You Win!");
+                    resetGame();
+                }
+            }
+        } else {
+            console.log("Too far to hit the CPU!");
+        }
+        checkWin();
+    }
+
+    function cpuMove() {
+        const distanceX = fighter1Position - fighter2Position;
+        const distanceY = fighter1YPosition - fighter2YPosition;
+
+        // Move CPU towards Player 1
+        if (Math.abs(distanceX) > attackDistance || Math.abs(distanceY) > attackDistance) {
+            const moveSpeed = 8; // Speed at which CPU moves towards Player 1
+
+            if (distanceX > 0) {
+                fighter2Position += Math.min(moveSpeed, distanceX);
+            } else if (distanceX < 0) {
+                fighter2Position -= Math.min(moveSpeed, -distanceX);
+            }
+
+            if (distanceY > 0) {
+                fighter2YPosition += Math.min(moveSpeed, distanceY);
+            } else if (distanceY < 0) {
+                fighter2YPosition -= Math.min(moveSpeed, -distanceY);
+            }
+
+            fighter2.style.left = fighter2Position + 'px'; 
+            fighter2.style.top = fighter2YPosition + 'px'; 
+        } else {
+            // Attack if within distance
+            cpuAttack();
+        }
+    }
+
+    function cpuAttack() {
+        let damage = Math.floor(Math.random() * 6) + 5; // Random damage between 5 and 10
+        health1 -= damage; 
+        document.getElementById("health1").innerText = health1 > 0 ? health1 : 0;
+        console.log(`CPU Attack! Damage: ${damage}`);
+
+        // Check for knockdown situation
+        if (health1 <= 0 && !downed) {
+            playerKnockedDown++; // Increment player's knockdown count
+            downed = true; // Mark player as down
+            countDown();
+        }
+        checkWin();
+    }
+
+    function countDown() {
+        downCountDisplay.innerText = "Count: 10";
+        let count = 10;
+
+        countTimer = setInterval(() => {
+            count--;
+            downCountDisplay.innerText = "Count: " + count;
+
+            if (count <= 0) {
+                clearInterval(countTimer);
+                alert("You are Knocked Out! CPU Wins!");
+                resetGame();
+            }
+        }, 1000);
+    }
+
+    function checkWin() {
+        if (health1 <= 0) {
+            alert("CPU Wins!");
+            resetGame();
+        } else if (health2 <= 0) {
+            alert("You Win!");
+            resetGame();
+        }
+    }
+    
+    function determineWinner() {
+        if (health1 > health2) {
+            alert("You Win by Health!");
+        } else if (health1 < health2) {
+            alert("CPU Wins by Health!");
+        } else {
+            alert("It's a Draw!");
+        }
+        nextRound();
+    }
+
+    function nextRound() {
+        if (currentRound < 4) {
+            currentRound++;
+            roundDisplay.innerText = currentRound;
+            startRound();
+        } else {
+            alert("Game Over!");
+            resetGame();
+        }
+    }
+
+    function resetGame() {
+        health1 = 100;
+        health2 = 100;
+        document.getElementById("health1").innerText = health1;
+        document.getElementById("health2").innerText = health2;
+        resetPositions();
+        currentRound = 1; 
+        roundDisplay.innerText = currentRound; 
+        clearInterval(roundTimer);
+        clearInterval(cpuMoveInterval);
+        clearInterval(countTimer);
+        timerDisplay.innerText = "100"; 
+        downCountDisplay.innerText = '';
+    }
+
+    startRound();
+
+    document.getElementById("exit").addEventListener("click", function() {
+        window.location.reload(); // Reloads the page to exit the game
+    });
+</script>
+  </body>
+</html>

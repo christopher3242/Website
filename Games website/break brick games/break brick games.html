@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break Brick Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameControls">
+            <button id="restartButton">Restart</button>
+            <button id="exitButton" onclick="window.location.href='../games.html';">Exit</button>
+            <h1 id="title">Break Brick Game</h1>
+            <h2 id="scoreDisplay">Score: 0</h2>
+        </div>
+        <audio id="bounceSound" src="bounce.wav" preload="auto"></audio>
+        <audio id="breakSound" src="brick.wav" preload="auto"></audio>
+        <audio id="gameOverSound" src="gameover.wav" preload="auto"></audio>
+        <div id="gameOverMessage" style="display: none;">
+            <h2>Game Over</h2>
+            <p>Press "Restart" to play again!</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
