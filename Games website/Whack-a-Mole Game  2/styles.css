@@ -1,0 +1,75 @@
+body {
+    background-color: rgb(44, 47, 97);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+#startButton {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#endButton {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.game-container {
+    background-color: rgb(1, 254, 64);
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    gap: 10px;
+    border: 2px solid rgb(216, 216, 216);
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.hole {
+    height: 150px;
+    background: rgb(19, 55, 139);
+    border: 5px solid rgb(30, 30, 30);
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+.mole {
+    background-size: 150px;
+    background-image: url(
+    "https://media.geeksforgeeks.org/wp-content/uploads/20231130123541/mole.png")
+}
+
+@media only screen and (max-width: 600px) {
+    .game-container {
+        width: 80%;
+        gap: 10px;
+        padding: 5%;
+        grid-template-columns: repeat(3, 38%);
+    }
+
+    .hole {
+        height: 50px;
+        width: 50px;
+        border-radius: 100px;
+    }
+
+    .mole {
+        background-size: 50px;
+        background-image: url(
+"https://media.geeksforgeeks.org/wp-content/uploads/20231130123541/mole.png")
+    }
+}

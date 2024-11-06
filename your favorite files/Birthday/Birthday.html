@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            background-color: #f9e79f;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #e74c3c;
+            font-size: 50px;
+        }
+        p {
+            font-size: 24px;
+            color: #34495e;
+        }
+        #celebrate-button, #exit-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        #celebrate-button:hover, #exit-button:hover {
+            background-color: #3498db;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday!</h1>
+    <img src="https://file.garden/Zyu3f9V1JUxg3Fw-/webiste%20%20onilne%20(Github)/birthday/birthdaycake" alt="Birthday Cake">
+    <p>Wishing you all the joy and happiness on your special day!</p>
+    <p id="current-date"></p>
+    <button id="celebrate-button" onclick="playSound()">🎉 Celebrate! 🎉</button>
+    <a href="../../your%20favorite%202%20.html"><button id="exit-button" onclick="exitPage()">❌ Exit</button></a>
+    <audio id="birthday-audio" src="https://file.garden/Zyu3f9V1JUxg3Fw-/webiste%20%20onilne%20(Github)/birthday/happy-birthday-258264.mp3"></audio>
+    <script>
+        // Display current date
+        const currentDate = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = currentDate.toLocaleDateString(undefined, options);
+
+        function playSound() {
+            const audio = document.getElementById('birthday-audio');
+            audio.play();
+        }
+
+        function exitPage() {
+            // Placeholder for exit logic if needed
+            // For now, it will just redirect to the specified link
+        }
+    </script>
+</body>
+</html>
+    
+  
+        
+

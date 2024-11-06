@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for demonstration; move to styles.css for production */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #gameBoard {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin: auto;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex; /* Enable flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            font-size: 2em; /* Increase font size for visibility */
+            cursor: pointer;
+        }
+        #resetButton, #exitButton {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div id="gameBoard">
+        <div class="cell" id="cell0"></div>
+        <div class="cell" id="cell1"></div>
+        <div class="cell" id="cell2"></div>
+        <div class="cell" id="cell3"></div>
+        <div class="cell" id="cell4"></div>
+        <div class="cell" id="cell5"></div>
+        <div class="cell" id="cell6"></div>
+        <div class="cell" id="cell7"></div>
+        <div class="cell" id="cell8"></div>
+    </div>
+</div>
+<button id="resetButton">Reset Game</button><br>
+<br>
+<div id="exitContainer"> <button id="exitButton"
+onclick="exitGame()">Exit</button> </div>
+<script src="script.js"></script>
+<script>
+function exitGame() {
+window.location.href = "../games.html"; // Navigate to the desired URL
+}
+</script>
+</body>
+</html>

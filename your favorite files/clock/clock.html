@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 48px;
+        }
+        #clock {
+            border: 2px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #617dfb;
+            color: #282c34;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2886a3;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="clock">00:00:00</div>
+    <button onclick="toggleFormat()">Toggle 12/24 Hours</button> <button
+      onclick="toggleAmPm()">Toggle AM/PM</button> <a
+      moz-do-not-send="true" href="../../your%20favorite.html"><button
+        onclick="exitClock()">Exit</button></a>
+    <!-- Exit Button -->
+    <script>
+        let is24HourFormat = true; // Default format
+        let showAmPm = false; // AM/PM display toggle
+
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            if (!is24HourFormat) {
+                // Convert hours to 12-hour format
+                const amPm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12; // Convert to 12-hour format
+                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${showAmPm ? amPm : ''}`;
+            } else {
+                // Display in 24-hour format
+                document.getElementById('clock').textContent = `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+            }
+        }
+
+        function toggleFormat() {
+            is24HourFormat = !is24HourFormat; // Toggle the format
+            updateClock(); // Update the display immediately
+        }
+
+        function toggleAmPm() {
+            showAmPm = !showAmPm; // Toggle AM/PM display
+            updateClock(); // Update the display immediately
+        }
+
+        function exitClock() {
+            window.close(); // Attempt to close the window
+            // Removed the alert notification
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display clock immediately
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #b8a8a8;
+}
+
+.game-container {
+    text-align: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    margin: 20px auto;
+    border: 2px solid #333;
+}
+
+.square {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.snake {
+    background-color: lightcoral;
+}
+
+.ladder {
+    background-color: lightgreen;
+}
+
+.player-token {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.player1-token {
+    background-color: red; /* Player 1 color */
+}
+
+.player2-token {
+    background-color: blue; /* Player 2 color */
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.exit-button {
+    padding: 10px 15px;
+    background-color: #293ba1; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.exit-button:hover {
+    background-color: #454eca; /* Darker color on hover */
+}
+
+.rollButton {
+    font-size: 20px; /* Larger font size */
+    padding: 15px 30px; /* More padding */
+    background-color: #293ba1; /* Button color */
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+.rollButton:hover {
+    background-color: #454eca; /* Darker color on hover */
+}
