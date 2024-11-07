@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
     <title>Photo Slideshow with Music</title>
     <style>
         body {
@@ -38,23 +40,33 @@
         audio {
             margin-top: 20px;
         }
+
+        #exitButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #468ba7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #exitButton:hover {
+            background-color: #114bc9;
+        }
     </style>
-</head>
-<body>
-
-<div id="slideshow">
-    <img src="image1.jpg" class="active" alt="Image 1">
-    <img src="image2.jpg" alt="Image 2">
-    <img src="image3.jpg" alt="Image 3">
-    <img src="image4.jpg" alt="Image 4">
-</div>
-
-<audio controls autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
-</audio>
-
-<script>
+  </head>
+  <body>
+    <div id="slideshow"> <img src="image1.jpg" class="active"
+        alt="Image 1"> <img src="image2.jpg" alt="Image 2"> <img
+        src="image3.jpg" alt="Image 3"> <img src="image4.jpg"
+        alt="Image 4"> </div>
+    <audio controls="controls" autoplay="autoplay" loop=""> <source
+        src="music.mp3" type="audio/mpeg"> Your browser does not support
+      the audio tag. </audio> <a moz-do-not-send="true"
+      href="../../your%20favorite.html"><button id="exitButton">Exit</button></a>
+    <script>
     let currentIndex = 0;
     const images = document.querySelectorAll("#slideshow img");
     const totalImages = images.length;
@@ -66,7 +78,8 @@
     }
 
     setInterval(showNextImage, 50000); // Change image every 50 seconds
-</script>
 
-</body>
+  </body>
+</html>
+  </body>
 </html>
