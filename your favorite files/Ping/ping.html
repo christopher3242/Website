@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Network Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            white-space: pre-line; /* Allows for line breaks in the result */
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Network Connectivity Tests</h1>
+    <button onclick="testPing()">Ping Test</button> <button
+      onclick="testWiFi()">Wi-Fi Test</button> <button
+      onclick="testVPN()">VPN Status Test</button> <button
+      onclick="getPublicIP()">Get Public IP</button> <button
+      onclick="clearResults()">Clear All</button> <a
+      moz-do-not-send="true" href="../../your%20favorite%202%20.html"><button
+        onclick="exit()">Exit</button></a>
+    <div class="result" id="result"></div>
+    <script>
+        async function testPing() {
+            const startTime = performance.now();
+            const url = 'https://www.google.com/favicon.ico'; // Using a small resource
+            try {
+                await fetch(url, { method: 'GET', mode: 'no-cors' });
+                const duration = performance.now() - startTime;
+                document.getElementById('result').innerText += `Ping Test: Success! Time: ${duration.toFixed(2)} ms\n`;
+            } catch (error) {
+                document.getElementById('result').innerText += `Ping Test: Failed - ${error.message}\n`;
+            }
+        }
+
+        async function testWiFi() {
+            try {
+                const response = await fetch('https://www.google.com/', { method: 'HEAD', mode: 'no-cors' });
+                if (response.ok) {
+                    document.getElementById('result').innerText += 'Wi-Fi Test: Connected to Internet!\n';
+                } else {
+                    document.getElementById('result').innerText += 'Wi-Fi Test: Not connected.\n';
+                }
+            } catch (error) {
+                document.getElementById('result').innerText += `Wi-Fi Test: Failed - ${error.message}\n`;
+            }
+        }
+
+        async function testVPN() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            const publicIP = data.ip;
+            // Example VPN check
+            if (publicIP.startsWith('192.0.2.')) { // Replace with actual VPN ranges for better accuracy
+                document.getElementById('result').innerText += `VPN Test: You're behind a VPN (simulated check on IP ${publicIP}).\n`;
+            } else {
+                document.getElementById('result').innerText += `VPN Test: No VPN detected (IP ${publicIP}).\n`;
+            }
+        }
+
+        async function getPublicIP() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            document.getElementById('result').innerText += `Public IP Test: Your public IP is ${data.ip}.\n`;
+        }
+
+        function clearResults() {
+            document.getElementById('result').innerText = '';
+        }
+
+        </script>
+  </body>
+</html>
