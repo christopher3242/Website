@@ -3,52 +3,59 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
     <title>Loading Screen Animation</title>
     <style>
         body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            animation: rgbBackground 5s infinite; /* Add RGB animation */
-            color: white;
             font-family: Arial, sans-serif;
         }
 
-        @keyframes rgbBackground {
-            0% { background-color: rgb(248, 159, 174); }
-            25% { background-color: rgb(241, 117, 231); }
-            50% { background-color: rgb(121, 40, 96); }
-            75% { background-color: rgb(73, 15, 42); }
-            100% { background-color: rgb(168, 12, 38); }
+        /* Fullscreen Overlay */
+        .overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+            background: linear-gradient(to right, rgb(122, 31, 74), rgb(173, 11, 223));
+            position: fixed; /* Cover entire viewport */
+            top: 0; /* Start at the very top */
+            left: 0; /* Start at the very left */
+            width: 100%; /* Full width */
+            z-index: 999; /* On top of everything else */
+            color: white; /* Text color */
+            text-align: center; /* Center the text */
         }
 
-        .loading-container {
-            text-align: center;
-            background-color: rgb(104, 12, 84);     /* Purple background for the container */
+        .loading-message {
             padding: 20px;
-            border-radius: 10px;
-            animation: slideIn 1s;
-            box-shadow: 0 0 20px rgba(248, 22, 135, 0.842); /* Glowing effect */
+            background-color: rgba(100, 22, 124, 0.966); /* Semi-transparent background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(255, 10, 222, 0.91); /* Shadow for depth */
+            animation: slideDown 1s ease-out; /* Apply slide down animation */
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px); /* Start 50px higher */
+                opacity: 0; /* Fully transparent */
+            }
+            to {
+                transform: translateY(0); /* End at original position */
+                opacity: 1; /* Fully opaque */
+            }
         }
 
         .button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #ff1493; /* Neon-like pink color */
+            background-color: #ff3b76; /* Neon-like pink color */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
         }
 
         .button:hover {
@@ -58,20 +65,14 @@
     </style>
   </head>
   <body>
-    <div class="loading-container">
-      <h1>Welcome xxxsexy</h1>
-      <p>Do you want a link? : Of course! Come on&nbsp; We're Open Today
-        available (24/7)<br>
-      </p>
-      <a moz-do-not-send="true" href="your%20favorite.html"><button
-          class="button" onclick="handleClick()">Click Me</button></a>
+    <div class="overlay">
+      <div class="loading-message">
+        <h1>Welcome xxxsexy</h1>
+        <p>Do you want a link? Of course! Choose what you want. We're
+          open today, available 24/7.</p>
+        <a moz-do-not-send="true" href="your%20favorite.html"><button
+            class="button" onclick="handleClick()">Click me</button></a>
+      </div>
     </div>
-    <script>
-    function handleClick() {
-        alert("Loading your content...");
-        // Here you can add the code to redirect or load new content.
-        // For example: window.location.href = 'your-link.html';
-    }
-    </script>
   </body>
 </html>

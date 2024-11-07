@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,
-      initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Slideshow with Music</title>
     <style>
         body {
@@ -55,30 +54,52 @@
         #exitButton:hover {
             background-color: #114bc9;
         }
+
+        #downloadLink {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #468ba7;
+            padding: 10px 15px;
+            border: 1px solid #468ba7;
+            border-radius: 5px;
+        }
+
+        #downloadLink:hover {
+            background-color: #e6f0ff;
+        }
     </style>
-  </head>
-  <body>
-    <div id="slideshow"> <img src="image1.jpg" class="active"
-        alt="Image 1"> <img src="image2.jpg" alt="Image 2"> <img
-        src="image3.jpg" alt="Image 3"> <img src="image4.jpg"
-        alt="Image 4"> </div>
-    <audio controls="controls" autoplay="autoplay" loop=""> <source
-        src="music.mp3" type="audio/mpeg"> Your browser does not support
-      the audio tag. </audio> <a moz-do-not-send="true"
-      href="../../your%20favorite.html"><button id="exitButton">Exit</button></a>
+</head>
+<body>
+    <div id="slideshow">
+        <img src="image1.jpg" class="active" alt="Image 1">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+        <img src="image4.jpg" alt="Image 4">
+    </div>
+    
+    <audio controls autoplay loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <a id="downloadLink" href="music.mp3" download>Download Music</a>
+    
+    <a href="../../your%20favorite.html">
+        <button id="exitButton">Exit</button>
+    </a>
+
     <script>
-    let currentIndex = 0;
-    const images = document.querySelectorAll("#slideshow img");
-    const totalImages = images.length;
+        let currentIndex = 0;
+        const images = document.querySelectorAll("#slideshow img");
+        const totalImages = images.length;
 
-    function showNextImage() {
-        images[currentIndex].classList.remove("active");
-        currentIndex = (currentIndex + 1) % totalImages;
-        images[currentIndex].classList.add("active");
-    }
+        function showNextImage() {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add("active");
+        }
 
-    setInterval(showNextImage, 50000); // Change image every 50 seconds
-</script>
+        setInterval(showNextImage, 5000); // Change image every 5 seconds
+    </script>
 </body>
 </html>
-
