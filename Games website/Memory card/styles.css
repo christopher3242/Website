@@ -12,8 +12,7 @@ h1 {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 100px); /* Creates 5 columns */
-    grid-template-rows: repeat(5, 100px);   /* Creates 5 rows */
+    grid-template-columns: repeat(4, 100px);
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -21,7 +20,7 @@ h1 {
 .card {
     width: 100px;
     height: 100px;
-    background-color: #1efa60;
+    background-color: #4b961f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,18 +33,17 @@ h1 {
 .card img {
     width: 100%;
     height: 100%;
-    display: none; /* Initially hidden */
+    display: none;
 }
 
 .card.flipped img {
-    display: block; /* Show image when card is flipped */
+    display: block;
 }
 
 .card.matched {
-    background-color: #2d5dfc; /* Color for matched cards */
-    pointer-events: none; /* Disable click on matched cards */
+    background-color: #3267fa;
+    pointer-events: none;
 }
-
 #score-display {
     font-size: 24px;
     margin-bottom: 20px;

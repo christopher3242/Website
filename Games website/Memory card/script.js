@@ -2,7 +2,7 @@ const gameBoard = document.getElementById('game-board');
 const resetButton = document.getElementById('reset-button');
 const scoreDisplay = document.getElementById('score-display');
 
-// Update image array with 10 unique images (ensure these images are available)
+let cards = [];
 let cardValues = [
     'image1.png',
     'image2.png',
@@ -13,22 +13,14 @@ let cardValues = [
     'image7.png',
     'image8.png',
     'image9.png',
-    'image10.png'
+    'image10.png',
 ];
-
-cardValues = [...cardValues, ...cardValues]; // Duplicate the card values for matching pairs
-
-// Adding empty slots to make it 25 cards
-while (cardValues.length < 25) {
-    cardValues.push(null); // Push null values for empty spaces in the grid
-}
-
+cardValues = [...cardValues, ...cardValues]; // Duplicate cards
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let score = 0;
 
-// Shuffle function to randomize the card positions
 function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
 }
@@ -37,19 +29,18 @@ function createCardElement(value) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.value = value;
-
+    
     const img = document.createElement('img');
-    img.src = value; // Set the image source
-    img.alt = "Memory Card Image"; 
+    img.src = value;
+    img.alt = "Memory Card Image";
+    
     card.appendChild(img);
-
     card.addEventListener('click', flipCard);
     gameBoard.appendChild(card);
 }
 
-// Flip the card when clicked
 function flipCard() {
-    if (lockBoard || this === firstCard || !this.dataset.value) return; // Ignore empty cards
+    if (lockBoard || this === firstCard) return;
 
     this.classList.add('flipped');
 
@@ -58,6 +49,7 @@ function flipCard() {
     } else {
         secondCard = this;
         lockBoard = true;
+
         checkForMatch();
     }
 }
@@ -66,7 +58,7 @@ function checkForMatch() {
     if (firstCard.dataset.value === secondCard.dataset.value) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
-        updateScore(1);
+        updateScore(1); // Increase score for a match
         resetBoard();
     } else {
         setTimeout(() => {
@@ -88,12 +80,12 @@ function resetBoard() {
 }
 
 function setupGame() {
-    score = 0;
-    scoreDisplay.textContent = `Score: ${score}`;
+    score = 0; // Reset score
+    scoreDisplay.textContent = `Score: ${score}`; // Update score display
     shuffle(cardValues);
     gameBoard.innerHTML = '';
     cardValues.forEach(createCardElement);
 }
 
 resetButton.addEventListener('click', setupGame);
-setupGame(); // Initialize the game on load
+setupGame();
