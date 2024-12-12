@@ -1,0 +1,116 @@
+/* Layout */
+.main {
+    display: flex;
+    padding: 2em;
+    height: 90vh;
+    justify-content: center;
+    align-items: middle;
+    
+}
+
+.clockbox,
+#clock {
+    width: 100%;
+    
+}
+
+/* Clock styles */
+.circle {
+    fill: none;
+    stroke: #000;
+    stroke-width: 9;
+    stroke-miterlimit: 10;
+}
+
+.mid-circle {
+    fill: #000;
+}
+.hour-marks {
+    fill: none;
+    stroke: #000;
+    stroke-width: 9;
+    stroke-miterlimit: 10;
+}
+
+.hour-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 17;
+    stroke-miterlimit: 10;
+}
+
+.minute-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 11;
+    stroke-miterlimit: 10;
+}
+
+.second-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+}
+
+/* Transparent box ensuring arms center properly. */
+.sizing-box {
+    fill: none;
+}
+
+/* Make all arms rotate around the same center point. */
+/* Optional: Use transition for animation. */
+#hour,
+#minute,
+#second {
+    transform-origin: 300px 300px;
+    /* transition: transform .5s ease-in-out; */
+}
+
+/*Digital clock*/
+.digitalClock h1{
+    text-align: center;
+    padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 45px;
+    background-color: #000;
+    color: #ffffff;
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+    border-style: solid;
+    margin-left: 37%;
+    margin-right: 37%;
+    margin-bottom: -30px;
+}
+
+@media screen and (max-width: 1050px){
+    .digitalClock h1{
+        font-size: 30px;
+        margin-left: 33%;
+        margin-right: 33%;
+    }
+}
+@media screen and (max-width: 450px){
+    .digitalClock h1{
+        font-size: 30px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+#exit-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    background-color: #4020fa; /* red color */
+    color: #fff; /* white color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #exit-btn:hover {
+    background-color: #0c2ef1; /* darker red color on hover */
+  }
