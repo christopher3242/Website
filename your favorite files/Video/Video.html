@@ -37,24 +37,28 @@
     <video id="videoPlayer" controls="controls"> <source
         src="video1.mp4" type="video/mp4"> Your browser does not support
       the video tag. </video>
-    <div> <button id="prev">Back</button> <button id="next">Next</button>
+    <div> 
+      <button id="prev" onclick="prevVideo()">Back</button> 
+      <button id="random" onclick="randomVideo()">Random</button> 
+      <button id="next" onclick="nextVideo()">Next</button> 
       <a moz-do-not-send="true" href="../../your%20favorite.html"><button
           id="exit">Exit</button></a>
       <!-- Exit button --> </div>
     <script>
         const videoPlayer = document.getElementById('videoPlayer');
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-        const exitButton = document.getElementById('exit'); // Exit button reference
+        let currentVideoIndex = 0;
 
         // Define an array of video sources
         const videoSources = [
             'video1.mp4',
             'video2.mp4',
-            'video3.mp4'
+            'video3.mp4',
+            'video4.mp4',
+            'video5.mp4',
+            'video6.mp4',
+            'video7.mp4',
+            'video8.mp4'
         ];
-
-        let currentVideoIndex = 0;
 
         function updateVideo() {
             videoPlayer.src = videoSources[currentVideoIndex];
@@ -62,19 +66,24 @@
             videoPlayer.play();
         }
 
-        prevButton.addEventListener('click', () => {
-            if (currentVideoIndex > 0) {
-                currentVideoIndex--;
-                updateVideo();
-            }
-        });
+        function prevVideo() {
+          if (currentVideoIndex > 0) {
+              currentVideoIndex--;
+              updateVideo();
+          }
+        }
 
-        nextButton.addEventListener('click', () => {
-            if (currentVideoIndex < videoSources.length - 1) {
-                currentVideoIndex++;
-                updateVideo();
-            }
-        });
+        function nextVideo() {
+          if (currentVideoIndex < videoSources.length - 1) {
+              currentVideoIndex++;
+              updateVideo();
+          }
+        }
+
+        function randomVideo() {
+          currentVideoIndex = Math.floor(Math.random() * videoSources.length);
+          updateVideo();
+        }
 
     </script>
   </body>
