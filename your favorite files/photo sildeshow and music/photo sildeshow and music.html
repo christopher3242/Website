@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Slideshow with Music</title>
+    <link rel="stylesheet" href="path/to/magic-slideshow.css"> <!-- Link your MagicSlideshow CSS file -->
+    <script src="path/to/magic-slideshow.js"></script>  <!-- Link your MagicSlideshow JS file -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,19 +31,19 @@
 
         #slideshow img {
             width: 100%;
-            display: none;
+            display: none; /* Will be controlled by the library */
             border-radius: 10px;
         }
 
         #slideshow img.active {
-            display: block;
+            display: block; /* This might be handled by MagicSlideshow instead */
         }
 
         audio {
             margin-top: 20px;
         }
 
-        #exitButton {
+        #exitButton, #backButton, #nextButton {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
@@ -51,7 +54,7 @@
             cursor: pointer;
         }
 
-        #exitButton:hover {
+        #backButton:hover, #nextButton:hover, #exitButton:hover {
             background-color: #114bc9;
         }
 
@@ -69,21 +72,50 @@
         }
     </style>
 </head>
+
 <body>
-    <div id="slideshow">
-        <img src="image1.jpg" class="active" alt="Image 1">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
-        <img src="image4.jpg" alt="Image 4">
+    <div class="MagicSlideshow" data-options="slide-duration:1500;effect:cube;">
+        <div id="slideshow">
+            <img src="image1.jpg" class="active" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
+            <img src="image5.jpg" alt="Image 5">
+            <img src="image6.jpg" alt="Image 6">
+            <img src="image7.jpg" alt="Image 7">
+            <img src="image8.jpg" alt="Image 8">
+            <img src="image9.jpg" alt="Image 9">
+            <img src="image10.jpg" alt="Image 10">
+            <img src="image11.jpg" alt="Image 11">
+            <img src="image12.jpg" alt="Image 12">
+            <img src="image13.jpg" alt="Image 13">
+            <img src="image14.jpg" alt="Image 14">
+            <img src="image15.jpg" alt="Image 15">
+            <img src="image16.jpg" alt="Image 16">
+            <img src="image17.jpg" alt="Image 17">
+            <img src="image18.jpg" alt="Image 18">
+            <img src="image19.jpg" alt="Image 19">
+            <img src="image20.jpg" alt="Image 20">
+            <img src="image21.jpg" alt="Image 21">
+            <img src="image22.jpg" alt="Image 22">
+            <img src="image23.jpg" alt="Image 23">
+            <img src="image24.jpg" alt="Image 24">
+            <img src="image25.jpg" alt="Image 25">
+        </div>
     </div>
-    
+
     <audio controls autoplay loop>
         <source src="music.mp3" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
 
     <a id="downloadLink" href="music.mp3" download>Download Music</a>
-    
+
+    <div>
+        <button id="backButton">&lt; Back</button>
+        <button id="nextButton">Next &gt;</button>
+    </div>
+
     <a href="../../your%20favorite.html">
         <button id="exitButton">Exit</button>
     </a>
@@ -93,13 +125,26 @@
         const images = document.querySelectorAll("#slideshow img");
         const totalImages = images.length;
 
-        function showNextImage() {
+        function showImage(index) {
             images[currentIndex].classList.remove("active");
-            currentIndex = (currentIndex + 1) % totalImages;
+            currentIndex = (index + totalImages) % totalImages;
             images[currentIndex].classList.add("active");
         }
 
-        setInterval(showNextImage, 5000); // Change image every 5 seconds
+        document.getElementById("backButton").addEventListener("click", function() {
+            showImage(currentIndex - 1);
+        });
+
+        document.getElementById("nextButton").addEventListener("click", function() {
+            showImage(currentIndex + 1);
+        });
+
+        // Initialize MagicSlideshow if applicable
+        MagicSlideshow.init({
+            duration: 1500,
+            effect: 'cube'
+        });
     </script>
 </body>
+
 </html>

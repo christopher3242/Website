@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,
-      initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player</title>
     <style>
         body {
@@ -14,7 +13,12 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            /* Background gradient */
+            background: hsla(0, 4%, 52%, 1);
+            background: linear-gradient(0deg, hsla(0, 4%, 52%, 1) 0%, hsla(194, 45%, 39%, 1) 50%);
+            background: -moz-linear-gradient(0deg, hsla(0, 4%, 52%, 1) 0%, hsla(194, 45%, 39%, 1) 50%);
+            background: -webkit-linear-gradient(0deg, hsla(0, 4%, 52%, 1) 0%, hsla(194, 45%, 39%, 1) 50%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8A8181", endColorstr="#377B90", GradientType=1);
             font-family: Arial, sans-serif;
         }
         video {
@@ -34,30 +38,54 @@
   </head>
   <body>
     <h1>Video Player</h1>
-    <video id="videoPlayer" controls="controls"> <source
-        src="video1.mp4" type="video/mp4"> Your browser does not support
-      the video tag. </video>
+    <video id="videoPlayer" controls="controls">
+      <source src="video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <div> 
       <button id="prev" onclick="prevVideo()">Back</button> 
       <button id="random" onclick="randomVideo()">Random</button> 
       <button id="next" onclick="nextVideo()">Next</button> 
-      <a moz-do-not-send="true" href="../../your%20favorite.html"><button
-          id="exit">Exit</button></a>
-      <!-- Exit button --> </div>
+      <a moz-do-not-send="true" href="../../your%20favorite.html">
+        <button id="exit">Exit</button>
+      </a>
+    </div>
     <script>
         const videoPlayer = document.getElementById('videoPlayer');
         let currentVideoIndex = 0;
 
         // Define an array of video sources
         const videoSources = [
-            'video1.mp4',
+            'video1.mp4', // you ask video more 
             'video2.mp4',
             'video3.mp4',
             'video4.mp4',
             'video5.mp4',
             'video6.mp4',
             'video7.mp4',
-            'video8.mp4'
+            'video8.mp4',
+            'video9.mp4',
+            'video10.mp4',
+            'video11.mp4',
+            'video12.mp4',
+            'video13.mp4',
+            'video14.mp4',
+            'video15.mp4',
+            'video16.mp4',
+            'video17.mp4',
+            'video18.mp4',
+            'video19.mp4',
+            'video20.mp4',
+            'video21.mp4',
+            'video22.mp4',
+            'video23.mp4',
+            'video24.mp4',
+            'video25.mp4',
+            'video26.mp4',
+            'video27.mp4',
+            'video28.mp4',
+            'video29.mp4',
+            'video30.mp4'
         ];
 
         function updateVideo() {
@@ -84,7 +112,6 @@
           currentVideoIndex = Math.floor(Math.random() * videoSources.length);
           updateVideo();
         }
-
     </script>
   </body>
 </html>

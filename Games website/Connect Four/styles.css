@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(7, 70px);
+    grid-template-rows: repeat(6, 70px);
+    gap: 5px;
+    margin: 20px;
+}
+
+.cell {
+    width: 70px;
+    height: 70px;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+button {
+    margin-top: 20px;
+}

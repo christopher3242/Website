@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Connect Four</h1>
+    <div id="board"></div> <!-- Game Board -->
+    <button id="restart">Restart Game</button> <!-- Restart Button -->
+
+    <!-- Exit Button using <a> tag -->
+    <a href="file:///C:/Users/Christopher/Documents/GitHub/website-onilne/Games%20website/games%202.html">
+        <button id="exit">Exit</button>
+    </a>
+
+    <!-- Optionally: If you want to handle exit with JavaScript, uncomment below -->
+    <!--
+    <button id="exit">Exit</button>
+    <script>
+        document.getElementById('exit').addEventListener('click', function() {
+            window.location.href = 'file:///C:/Users/Christopher/Documents/GitHub/website-onilne/Games%20website/games%202.html';
+        });
+    </script>
+    -->
+
+    <script src="script.js"></script> <!-- Link to your game logic -->
+</body>
+</html>

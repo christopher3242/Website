@@ -2,13 +2,26 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,
-      initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Tests</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;  /* Center items horizontally */
+        }
+
+        h1 {
+            text-align: center; /* Centered text for the heading */
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows buttons to wrap in case of small screens */
+            justify-content: center; /* Center buttons */
+            margin-top: 20px; /* Space between title and buttons */
         }
 
         button {
@@ -20,18 +33,23 @@
         .result {
             margin-top: 20px;
             white-space: pre-line; /* Allows for line breaks in the result */
+            text-align: left; /* Aligns result text to left */
         }
     </style>
   </head>
   <body>
     <h1>Network Connectivity Tests</h1>
-    <button onclick="testPing()">Ping Test</button> <button
-      onclick="testWiFi()">Wi-Fi Test</button> <button
-      onclick="testVPN()">VPN Status Test</button> <button
-      onclick="getPublicIP()">Get Public IP</button> <button
-      onclick="clearResults()">Clear All</button> <a
-      moz-do-not-send="true" href="../../your%20favorite%202%20.html"><button
-        onclick="exit()">Exit</button></a>
+    <div class="button-container">
+        <button onclick="testPing()">Ping Test</button>
+        <button onclick="testEthernetPing()">Ethernet Ping Test</button>
+        <button onclick="testWiFi()">Wi-Fi Test</button>
+        <button onclick="testVPN()">VPN Status Test</button>
+        <button onclick="getPublicIP()">Get Public IP</button>
+        <button onclick="clearResults()">Clear All</button>
+        <a moz-do-not-send="true" href="../../your%20favorite%202%20.html">
+            <button onclick="exit()">Exit</button>
+        </a>
+    </div>
     <div class="result" id="result"></div>
     <script>
         async function testPing() {
@@ -43,6 +61,22 @@
                 document.getElementById('result').innerText += `Ping Test: Success! Time: ${duration.toFixed(2)} ms\n`;
             } catch (error) {
                 document.getElementById('result').innerText += `Ping Test: Failed - ${error.message}\n`;
+            }
+        }
+
+        async function testEthernetPing() {
+            const startTime = performance.now();
+            const url = 'https://1.1.1.1/cdn-cgi/trace'; // Using Cloudflare's DNS server for an Ethernet ping simulation
+            try {
+                const response = await fetch(url, { method: 'GET' });
+                if (response.ok) {
+                    const duration = performance.now() - startTime;
+                    document.getElementById('result').innerText += `Ethernet Ping Test: Success! Time: ${duration.toFixed(2)} ms\n`;
+                } else {
+                    document.getElementById('result').innerText += 'Ethernet Ping Test: Not connected.\n';
+                }
+            } catch (error) {
+                document.getElementById('result').innerText += `Ethernet Ping Test: Failed - ${error.message}\n`;
             }
         }
 
@@ -80,7 +114,6 @@
         function clearResults() {
             document.getElementById('result').innerText = '';
         }
-
-        </script>
+    </script>
   </body>
 </html>
