@@ -1,150 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
     <title>Photo Slideshow with Music</title>
-    <link rel="stylesheet" href="path/to/magic-slideshow.css"> <!-- Link your MagicSlideshow CSS file -->
-    <script src="path/to/magic-slideshow.js"></script>  <!-- Link your MagicSlideshow JS file -->
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            text-align: center;
             background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
         }
-
         #slideshow {
-            position: relative;
             width: 80%;
             max-width: 600px;
+            margin: 20px auto;
+            position: relative;
             overflow: hidden;
+            border: 2px solid #ccc;
             border-radius: 10px;
+            background: #fff;
         }
-
         #slideshow img {
             width: 100%;
-            display: none; /* Will be controlled by the library */
             border-radius: 10px;
         }
-
-        #slideshow img.active {
-            display: block; /* This might be handled by MagicSlideshow instead */
-        }
-
-        audio {
-            margin-top: 20px;
-        }
-
-        #exitButton, #backButton, #nextButton {
-            margin-top: 20px;
+        .button {
             padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #468ba7;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-
-        #backButton:hover, #nextButton:hover, #exitButton:hover {
-            background-color: #114bc9;
+        .button:hover {
+            background-color: #0056b3;
         }
-
-        #downloadLink {
+        #controls {
             margin-top: 10px;
-            text-decoration: none;
-            color: #468ba7;
-            padding: 10px 15px;
-            border: 1px solid #468ba7;
-            border-radius: 5px;
-        }
-
-        #downloadLink:hover {
-            background-color: #e6f0ff;
         }
     </style>
-</head>
-
-<body>
-    <div class="MagicSlideshow" data-options="slide-duration:1500;effect:cube;">
-        <div id="slideshow">
-            <img src="image1.jpg" class="active" alt="Image 1">
-            <img src="image2.jpg" alt="Image 2">
-            <img src="image3.jpg" alt="Image 3">
-            <img src="image4.jpg" alt="Image 4">
-            <img src="image5.jpg" alt="Image 5">
-            <img src="image6.jpg" alt="Image 6">
-            <img src="image7.jpg" alt="Image 7">
-            <img src="image8.jpg" alt="Image 8">
-            <img src="image9.jpg" alt="Image 9">
-            <img src="image10.jpg" alt="Image 10">
-            <img src="image11.jpg" alt="Image 11">
-            <img src="image12.jpg" alt="Image 12">
-            <img src="image13.jpg" alt="Image 13">
-            <img src="image14.jpg" alt="Image 14">
-            <img src="image15.jpg" alt="Image 15">
-            <img src="image16.jpg" alt="Image 16">
-            <img src="image17.jpg" alt="Image 17">
-            <img src="image18.jpg" alt="Image 18">
-            <img src="image19.jpg" alt="Image 19">
-            <img src="image20.jpg" alt="Image 20">
-            <img src="image21.jpg" alt="Image 21">
-            <img src="image22.jpg" alt="Image 22">
-            <img src="image23.jpg" alt="Image 23">
-            <img src="image24.jpg" alt="Image 24">
-            <img src="image25.jpg" alt="Image 25">
-        </div>
+  </head>
+  <body>
+    <div id="slideshow"> <img id="slideshow-image" src="image1.png"
+        alt="Slideshow Image"> </div>
+    <div id="controls"> <button class="button" id="prev">Back</button>
+      <button class="button" id="next">Next</button> <a href="Music
+        Ro.mp3" download=""><button class="button">Download MP3</button></a>
+      <!-- Exit Button -->
+      <div><a href="../../your%20favorite.html" moz-do-not-send="true"><button
+            id="exit" class="button">Exit</button></a></div>
     </div>
-
-    <audio controls autoplay loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>
-
-    <a id="downloadLink" href="music.mp3" download>Download Music</a>
-
-    <div>
-        <button id="backButton">&lt; Back</button>
-        <button id="nextButton">Next &gt;</button>
-    </div>
-
-    <a href="../../your%20favorite.html">
-        <button id="exitButton">Exit</button>
-    </a>
-
+    <audio id="audio" controls="controls" autoplay="autoplay" loop=""> <source
+        src="Music Ro.mp3" type="audio/mpeg"> Your browser does not
+      support the audio element. </audio>
     <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll("#slideshow img");
-        const totalImages = images.length;
+    const images = [
+        'image1.png', 'image2.png', 'image3.png',
+        'image4.png', 'image5.jpg', 'image6.jpg',
+        'image7.jpg', 'image8.jpg', 'image9.jpg',
+        'image10.jpg', 'image11.jpg', 'image12.jpg',
+        'image13.jpg', 'image14.jpg', 'image15.jpg',
+        'image16.jpg', 'image17.jpg', 'image18.jpg',
+        'image19.jpg', 'image20.jpg', 'image21.jpg',
+        'image22.jpg', 'image23.jpg', 'image24.jpg', 
+        'image25.jpg'
+    ];
+    
+    let currentIndex = 0;
 
-        function showImage(index) {
-            images[currentIndex].classList.remove("active");
-            currentIndex = (index + totalImages) % totalImages;
-            images[currentIndex].classList.add("active");
-        }
+    function updateImage() {
+        const imgElement = document.getElementById('slideshow-image');
+        imgElement.src = images[currentIndex];
+    }
 
-        document.getElementById("backButton").addEventListener("click", function() {
-            showImage(currentIndex - 1);
-        });
+    document.getElementById('next').onclick = function() {
+        currentIndex = (currentIndex + 1) % images.length;  // Loop back to the start
+        updateImage();
+    };
 
-        document.getElementById("nextButton").addEventListener("click", function() {
-            showImage(currentIndex + 1);
-        });
+    document.getElementById('prev').onclick = function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;  // Loop to the end
+        updateImage();
+    };
 
-        // Initialize MagicSlideshow if applicable
-        MagicSlideshow.init({
-            duration: 1500,
-            effect: 'cube'
-        });
-    </script>
-</body>
-
+    updateImage();  // Initialize the slideshow with the first image
+</script>
+  </body>
 </html>
